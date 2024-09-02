@@ -29,7 +29,7 @@ const StatusFilter = () => {
     
 
    }} >
-    <SelectTrigger>
+    <SelectTrigger className='w-[200px]'>
         <SelectValue placeholder="Filter by Status..."/>
     </SelectTrigger>
     <SelectContent>

@@ -4,10 +4,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader,TableRow } from '@/
 import TicketStatusBadge from '../../../components/TicketStatusBadge'
 import TicketPriority from '../../../components/TicketPriority'
 import Link from 'next/link'
+import { SearchParams } from './page'
+import { ArrowDown } from 'lucide-react'
 interface Props{
-    tickets :Ticket[]
+    tickets :Ticket[];
+    searchParams:SearchParams
+
 }
-const DataTable = ({tickets}:Props) => {
+const DataTable = ({tickets,  searchParams}:Props) => {
     console.log("hello world")
   return (
     <div className='w-full mt-5'>
@@ -16,21 +20,38 @@ const DataTable = ({tickets}:Props) => {
             <TableHeader>
                 <TableRow>
             <TableHead>
+              <Link href={{query:{...searchParams,orderBy:"title"}}}>
                Title
+               </Link>
+               {"title"===searchParams.orderBy && 
+               <ArrowDown className='inline p-1'/>}
+              
              </TableHead>
 
              <TableHead>
               <div className='flex justify-center'>
-               Status
+              <Link href={{query:{...searchParams,orderBy:"status"}}}>
+             Status
+               </Link>
+               {"status"===searchParams.orderBy && 
+               <ArrowDown className='inline p-1'/>}
                </div>
              </TableHead>
              <TableHead>
              <div className='flex justify-center'>
-            Priority
+             <Link href={{query:{...searchParams,orderBy:"priority"}}}>
+              Priority
+               </Link>
+               {"priority"===searchParams.orderBy && 
+               <ArrowDown className='inline p-1'/>}
                </div>
              </TableHead>
              <TableHead>
-               CreatedAt
+             <Link href={{query:{...searchParams,orderBy:"createdAt"}}}>
+              Created At
+               </Link>
+               {"createdAt"===searchParams.orderBy && 
+               <ArrowDown className='inline p-1'/>}
              </TableHead>
                 </TableRow>
             </TableHeader>
