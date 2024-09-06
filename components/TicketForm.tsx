@@ -50,8 +50,6 @@ const TicketForm = ({ticket}:Props) => {
     setError("unknown Error Occcured")
     setIsSubmitting(false)
    }
-   
-  //  console.log(values);
   }
 
   return (

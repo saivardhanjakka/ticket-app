@@ -2,8 +2,12 @@ import React from 'react'
 import prisma from '../../prisma/db';
 import DashRecentTickets from '../../components/DashRecentTickets';
 import DashChart from '../../components/DashChart';
+import TicketService from '../../service/TicketService';
 const Dashboard = async () => {
-  const tickets = await prisma.ticket.findMany({
+const tickets = await TicketService.getRecentTickets(); 
+const data = await TicketService.getGroupedTickets();
+
+  /*const tickets = await prisma.ticket.findMany({
     where: {
       NOT: [{ status: "CLOSED" }]
     },
@@ -27,7 +31,7 @@ const Dashboard = async () => {
   const data = groupTicket.map((item) => ({
     name: item.status,
     total: item._count.id,
-  }));
+  }));*/
  
   return (
     <div className="grid gap-4 md:grid-cols-2 px-2">
